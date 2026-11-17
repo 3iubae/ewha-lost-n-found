@@ -5,125 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lost n Found - Add Item</title>
   <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-    }
-
-    header {
-      padding: 12px 16px;
-      border-bottom: 1px solid #ccc;
-    }
-
-    /* nav: left group (add, search) / right group (logout, mypage) */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    nav a {
-      margin-right: 12px;
-    }
-
-    nav .nav-right a {
-      margin-right: 0;
-      margin-left: 12px;
-    }
-
-    main {
-      max-width: 400px;
-      margin: 0 auto;
-      padding: 16px;
-    }
-
-    /* Photo upload box with the (+) icon */
-    #photo-box {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 8px;
-      border: 2px solid #333;
-      font-size: 36px;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    #photo-input {
-      display: none;
-    }
-
-    #photo-hint {
-      text-align: center;
-      font-size: 13px;
-      color: #666;
-      margin: 0 0 8px;
-    }
-
-    /* Thumbnails of the selected photos */
-    #photo-preview {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    #photo-preview img {
-      width: 72px;
-      height: 72px;
-      object-fit: cover;
-      border: 1px solid #ccc;
-    }
-
-    .form-row {
-      margin-bottom: 14px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 8px;
-      font-size: 15px;
-    }
-
-    textarea {
-      height: 90px;
-      resize: vertical;
-    }
-
-    button[type="submit"] {
-      display: block;
-      margin: 8px auto 0;
-      padding: 10px 32px;
-      font-size: 16px;
-    }
-
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    #add-message {
-      margin-top: 12px;
-      text-align: center;
-    }
-
+    /* nav: add, search on the left / logout, mypage on the right */
+    nav { display: flex; justify-content: space-between; }
     .success { color: green; }
     .error { color: red; }
-
-    footer {
-      text-align: center;
-      padding: 16px;
-      color: #666;
-    }
   </style>
 </head>
 <body>
@@ -131,11 +16,11 @@
   <header>
     <h1>lostnfound</h1>
     <nav>
-      <div class="nav-left">
+      <div>
         <a href="add.html">add</a>
         <a href="search.html">search</a>
       </div>
-      <div class="nav-right">
+      <div>
         <a href="logout.html">logout</a>
         <a href="mypage.html">mypage</a>
       </div>
@@ -143,54 +28,44 @@
   </header>
 
   <main>
-    <section id="add">
-      <h2>Add</h2>
+    <h2>Add</h2>
 
-      <form id="add-form">
-        <!-- Photo upload: clicking the (+) box opens the file picker -->
-        <label id="photo-box" for="photo-input" title="Add photos">&#8853;</label>
-        <input type="file" id="photo-input" accept="image/jpeg,image/png,image/webp" multiple>
-        <p id="photo-hint">Up to 5 photos (JPEG, PNG, WebP)</p>
-        <div id="photo-preview"></div>
+    <form id="add-form">
+      <p>
+        <label for="photos">Photos</label><br>
+        <input type="file" id="photos" accept="image/jpeg,image/png,image/webp" multiple required>
+      </p>
+      <p>
+        <label for="name">Name</label><br>
+        <input type="text" id="name" required>
+      </p>
+      <p>
+        <label for="category">Category</label><br>
+        <select id="category" required>
+          <option value="">Select a category</option>
+        </select>
+      </p>
+      <p>
+        <label for="found-date">Date Found</label><br>
+        <input type="date" id="found-date" required>
+      </p>
+      <p>
+        <label for="found-location">Location Found</label><br>
+        <input type="text" id="found-location" required>
+      </p>
+      <p>
+        <label for="storage-location">Storage Location</label><br>
+        <input type="text" id="storage-location" required>
+      </p>
+      <p>
+        <label for="description">Description</label><br>
+        <textarea id="description"></textarea>
+      </p>
+      <button type="submit">Submit</button>
+    </form>
 
-        <div class="form-row">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="e.g. Black wallet" required>
-        </div>
-
-        <div class="form-row">
-          <label for="category">Category</label>
-          <select id="category" required>
-            <option value="">Loading categories...</option>
-          </select>
-        </div>
-
-        <div class="form-row">
-          <label for="found-date">Date Found</label>
-          <input type="date" id="found-date" required>
-        </div>
-
-        <div class="form-row">
-          <label for="found-location">Location Found</label>
-          <input type="text" id="found-location" placeholder="e.g. Engineering Library 2nd floor" required>
-        </div>
-
-        <div class="form-row">
-          <label for="storage-location">Storage Location</label>
-          <input type="text" id="storage-location" placeholder="e.g. Left at the library front desk" required>
-        </div>
-
-        <div class="form-row">
-          <label for="description">Description</label>
-          <textarea id="description" placeholder="Color, brand, distinguishing features... (optional)"></textarea>
-        </div>
-
-        <button type="submit" id="submit-button">Submit</button>
-      </form>
-
-      <!-- Upload result message (below the Submit button) -->
-      <p id="add-message"></p>
-    </section>
+    <!-- Upload result message -->
+    <p id="message"></p>
   </main>
 
   <footer>
@@ -199,210 +74,92 @@
 
   <!-- Supabase JS library -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <!-- browser-image-compression: compresses photos in the browser before upload (NFR-03) -->
+  <!-- browser-image-compression: compresses photos before upload (NFR-03) -->
   <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
   <script>
     // TODO: Replace with our project's values (use the Publishable Key, NEVER the Secret Key!)
-    const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
-    const SUPABASE_KEY = 'YOUR-PUBLISHABLE-KEY';
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-    const BUCKET = 'item-images';
-    const MAX_PHOTOS = 5;
-    const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB, same as the bucket limit
-    const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+    const supabaseClient = supabase.createClient(
+      'https://YOUR-PROJECT.supabase.co',
+      'YOUR-PUBLISHABLE-KEY'
+    );
 
     const form = document.getElementById('add-form');
-    const photoInput = document.getElementById('photo-input');
-    const photoPreview = document.getElementById('photo-preview');
-    const categorySelect = document.getElementById('category');
-    const foundDateInput = document.getElementById('found-date');
-    const submitButton = document.getElementById('submit-button');
-    const message = document.getElementById('add-message');
-
-    let currentUser = null;
-    let selectedPhotos = [];
+    const message = document.getElementById('message');
+    let user = null;
 
     function showMessage(text, type) {
       message.textContent = text;
       message.className = type;
     }
 
-    // The found date cannot be in the future
-    foundDateInput.max = new Date().toISOString().split('T')[0];
-
-    // 1. Only logged-in users can use this page
+    // Redirect to the login page if the user is not logged in
     async function checkLogin() {
       const { data } = await supabaseClient.auth.getSession();
       if (!data.session) {
-        alert('Please log in first.');
         location.href = 'login.html';
-        return false;
+        return;
       }
-      currentUser = data.session.user;
-      return true;
+      user = data.session.user;
+      loadCategories();
     }
 
-    // 2. Fill the category dropdown from the categories table
+    // Fill the category dropdown from the categories table
     async function loadCategories() {
-      const { data, error } = await supabaseClient
-        .from('categories')
-        .select('id, name')
-        .order('name');
-
-      if (error) {
-        categorySelect.innerHTML = '<option value="">Failed to load categories</option>';
-        return;
-      }
-
-      categorySelect.innerHTML = '<option value="">Select a category</option>';
+      const { data } = await supabaseClient.from('categories').select('id, name');
+      const select = document.getElementById('category');
       data.forEach((category) => {
-        const option = document.createElement('option');
-        option.value = category.id;
-        option.textContent = category.name;
-        categorySelect.appendChild(option);
+        select.innerHTML += `<option value="${category.id}">${category.name}</option>`;
       });
     }
 
-    // 3. Check the selected photos and show thumbnails
-    photoInput.addEventListener('change', () => {
-      const files = Array.from(photoInput.files);
-      showMessage('', '');
-
-      if (files.length > MAX_PHOTOS) {
-        showMessage('You can upload up to ' + MAX_PHOTOS + ' photos.', 'error');
-        photoInput.value = '';
-        selectedPhotos = [];
-        photoPreview.innerHTML = '';
-        return;
-      }
-
-      for (const file of files) {
-        if (!ALLOWED_TYPES.includes(file.type)) {
-          showMessage(file.name + ' is not a JPEG, PNG, or WebP image.', 'error');
-          photoInput.value = '';
-          selectedPhotos = [];
-          photoPreview.innerHTML = '';
-          return;
-        }
-      }
-
-      selectedPhotos = files;
-      photoPreview.innerHTML = '';
-      files.forEach((file) => {
-        const img = document.createElement('img');
-        img.src = URL.createObjectURL(file);
-        img.alt = file.name;
-        photoPreview.appendChild(img);
-      });
-    });
-
-    // Compress a photo so it uploads quickly and stays under the 5 MB limit
-    async function compressPhoto(file) {
-      const options = {
-        maxSizeMB: 1,
-        maxWidthOrHeight: 1600,
-        useWebWorker: true,
-        fileType: file.type
-      };
-      return await imageCompression(file, options);
-    }
-
-    function getExtension(fileType) {
-      if (fileType === 'image/png') return 'png';
-      if (fileType === 'image/webp') return 'webp';
-      return 'jpg';
-    }
-
-    // 4. Submit: create the item first, then upload its photos
     form.addEventListener('submit', async (event) => {
       event.preventDefault(); // Prevent the page from reloading on submit
-
-      if (selectedPhotos.length === 0) {
-        showMessage('Please add at least one photo.', 'error');
-        return;
-      }
-
-      submitButton.disabled = true;
       showMessage('Uploading...', '');
 
-      // Step 1: insert the item (its UUID is needed for the photo folder)
-      const newItem = {
-        user_id: currentUser.id,
-        category_id: categorySelect.value,
-        name: document.getElementById('name').value.trim(),
-        found_date: foundDateInput.value,                                       // TODO: column must be added to the items table
-        found_location: document.getElementById('found-location').value.trim(), // TODO: column must be added to the items table
-        pickup_method: document.getElementById('storage-location').value.trim(),
-        description: document.getElementById('description').value.trim() || null
-      };
-
-      const { data: item, error: itemError } = await supabaseClient
+      // 1. Save the item first (its id is needed for the photo folder)
+      const { data: item, error } = await supabaseClient
         .from('items')
-        .insert(newItem)
+        .insert({
+          user_id: user.id,
+          category_id: document.getElementById('category').value,
+          name: document.getElementById('name').value,
+          found_date: document.getElementById('found-date').value,
+          found_location: document.getElementById('found-location').value,
+          pickup_method: document.getElementById('storage-location').value,
+          description: document.getElementById('description').value
+        })
         .select('id')
         .single();
 
-      if (itemError) {
-        console.error(itemError);
-        showMessage('Failed to save the item. Please try again.', 'error');
-        submitButton.disabled = false;
+      if (error) {
+        showMessage('Failed to save the item.', 'error');
         return;
       }
 
-      // Step 2: compress and upload each photo into item-images/ITEM_ID/
-      try {
-        for (let i = 0; i < selectedPhotos.length; i++) {
-          const compressed = await compressPhoto(selectedPhotos[i]);
+      // 2. Compress and upload each photo to item-images/ITEM_ID/
+      const photos = document.getElementById('photos').files;
+      for (let i = 0; i < photos.length; i++) {
+        const compressed = await imageCompression(photos[i], { maxSizeMB: 1 });
+        const path = `${item.id}/image-${i + 1}-${photos[i].name}`;
 
-          if (compressed.size > MAX_FILE_SIZE) {
-            throw new Error('Photo ' + (i + 1) + ' is still larger than 5 MB.');
-          }
+        const { error: uploadError } = await supabaseClient.storage
+          .from('item-images')
+          .upload(path, compressed);
 
-          const storagePath = item.id + '/image-' + (i + 1) + '.' + getExtension(compressed.type);
-
-          const { error: uploadError } = await supabaseClient
-            .storage
-            .from(BUCKET)
-            .upload(storagePath, compressed, { contentType: compressed.type });
-
-          if (uploadError) throw uploadError;
-
-          // Step 3: save the storage path in item_images
-          const { error: imageRowError } = await supabaseClient
-            .from('item_images')
-            .insert({ item_id: item.id, storage_path: storagePath });
-
-          if (imageRowError) throw imageRowError;
+        if (uploadError) {
+          showMessage('Failed to upload photos.', 'error');
+          return;
         }
-      } catch (error) {
-        console.error(error);
 
-        // Roll back: remove the half-saved item and any uploaded photos
-        const { data: uploaded } = await supabaseClient.storage.from(BUCKET).list(item.id);
-        if (uploaded && uploaded.length > 0) {
-          const paths = uploaded.map((file) => item.id + '/' + file.name);
-          await supabaseClient.storage.from(BUCKET).remove(paths);
-        }
-        await supabaseClient.from('items').delete().eq('id', item.id);
-
-        showMessage('Failed to upload photos. Please try again.', 'error');
-        submitButton.disabled = false;
-        return;
+        // 3. Save the photo path in item_images
+        await supabaseClient.from('item_images').insert({ item_id: item.id, storage_path: path });
       }
 
-      // Done: reset the form
       showMessage('Item uploaded successfully!', 'success');
-      form.reset();
-      selectedPhotos = [];
-      photoPreview.innerHTML = '';
-      submitButton.disabled = false;
+      form.reset(); // Stay on add.html with an empty form
     });
 
-    // Run on page load
-    checkLogin().then((loggedIn) => {
-      if (loggedIn) loadCategories();
-    });
+    checkLogin();
   </script>
 </body>
 </html>
