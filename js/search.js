@@ -26,12 +26,16 @@ async function loadItems() {
 
   data.forEach((item) => {
     const card = document.createElement("a");
-    card.href = `entry.html?id=${item.id}`;
     card.className = "item-card";
+    card.style.cursor = "pointer"; 
     card.dataset.name = item.name || "";
     card.dataset.category = item.category || "";
     card.dataset.location = item.location || "";
     card.dataset.date = item.created_at || "";
+
+    card.addEventListener("click", () => {
+      window.location.href = `itempage.html?id=${item.id}`;
+    });
 
     const formattedDate = item.created_at
       ? new Date(item.created_at).toLocaleDateString("en-US", {
