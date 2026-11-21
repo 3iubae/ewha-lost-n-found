@@ -143,3 +143,13 @@ footer {
   color: #888;
   padding: 32px 0;
 }
+
+.form-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.form-buttons button {
+  flex: 1;
+  padding: 10px;
+}

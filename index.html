@@ -97,7 +97,7 @@
       <form id="login-form">
         <div>
           <label for="email">ID (school email)</label><br>
-          <input type="email" id="email" name="email" placeholder="example@school.ac.kr" required>
+          <input type="email" id="email" name="email" placeholder="example@ewha.ac.kr" required>
         </div>
         <br>
         <div>
@@ -105,17 +105,15 @@
           <input type="password" id="password" name="password" required>
         </div>
         <br>
-        <button type="submit">SUBMIT</button>
+        <div class="form-buttons">
+          <button type="submit">LOGIN</button>
+          <button type="button" id="register-button">REGISTER</button>
+        </div>
       </form>
 
       <!-- Login result message (below the SUBMIT button) -->
       <p id="login-message"></p>
-    </section>
-
-    <!-- Add / Search buttons, shown after a successful login -->
-    <section id="action-buttons">
-      <button type="button" onclick="location.href='pages/add.html'">Add</button>
-      <button type="button" onclick="location.href='pages/search.html'">Search</button>
+      <p id="register-message"></p>
     </section>
   </main>
 
