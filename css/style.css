@@ -39,7 +39,7 @@ footer {
 
 /* search.html 전용 검색 화면 스타일 */
 .search-main {
-  max-width: 600px;
+  max-width: 720px;
   margin: 0 auto;
   padding: 16px;
 }
