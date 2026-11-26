@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost n Found - Item Details</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            padding: 12px 16px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        header h1 {
+            margin: 10px 0 20px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        nav a {
+            margin-right: 14px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        main {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 16px;
+        }
+
+        #imageContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .item-image {
+            width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: #f5f5f5;
+        }
+
+        .item-info {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .info-row {
+            margin: 16px 0;
+            line-height: 1.5;
+        }
+
+        .info-label {
+            display: block;
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        #foundButton {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #foundButton:hover {
+            background: #555;
+        }
+
+        #foundButton:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        #message {
+            margin: 20px 0;
+        }
+
+        .error {
+            color: red;
+        }
+
+        footer {
+            text-align: center;
+            padding: 16px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>lostnfound</h1>
+
+    <nav>
+        <div>
+            <a href="add.html">add</a>
+            <a href="search.html">search</a>
+        </div>
+
+        <div>
+            <a href="../logout.html">logout</a>
+            <a href="profile.html">mypage</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <h2>Item Details</h2>
+
+    <p id="message">Loading item details...</p>
+
+    <div id="itemContainer" style="display: none;">
+
+        <div id="imageContainer"></div>
+
+        <section class="item-info">
+
+            <h2 id="itemName"></h2>
+
+            <div class="info-row">
+                <span class="info-label">Category</span>
+                <span id="itemCategory"></span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Description</span>
+                <span id="itemDescription"></span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Date Found</span>
+                <span id="
